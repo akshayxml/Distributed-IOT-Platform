@@ -1,0 +1,75 @@
+{
+    "application name": "farm_management",
+    "application Id": "1",
+    "environment": {
+      "os": "Linux",
+      "modules": [
+        "python"
+      ],
+      "storage": "mongoDB"
+    },
+    "algorithmList": [{
+      "algorithm_name": "soil_profile",
+      "developer_id": 867,
+      "script": {
+        "name": "soil_profile.py",
+        "path": "farm_management/soil/soil_profile.py",
+        "Dependency": "python 3.0"
+      },
+      "Interface": {
+        "path": "farm_management/configurations/interface.json"
+      },
+      "sensor_type": {
+        "sensor1": {
+          "name": "soil moisture sensor",
+          "company": "Sony",
+          "output": "Moistue content: float",
+          "output_rate": "10 kbps"
+        },
+        "sensor2": {
+          "name": "Temperature sensor",
+          "company": "Warner Electronics",
+          "output": "Temperature: Kelvin",
+          "output_rate": "1 kbps"
+        },
+        "sensor3": {
+          "name": "alarm sensor",
+          "company": "FIGARO",
+          "output": "On/OFF: string",
+          "output_rate": "1 kbps"
+        }
+      }
+    },
+    {
+      "algorithm_name": "air_conditions",
+      "developer_id": 847,
+      "script": {
+        "name": "air_conditions.py",
+        "path": "farm_management/weather/air_conditions.py",
+        "Dependency": "python 3.0"
+      },
+      "Interface": {
+        "path": "farm_management/configurations/interface.json"
+      },
+      "sensor_type": {
+        "sensor1": {
+          "name": "Humidity sensor",
+          "company": "Sensirion",
+          "output": "Moisture content: float",
+          "output_rate": "10 kbps"
+        },
+        "sensor2": {
+          "name": "Temperature sensor",
+          "company": "CEL",
+          "output": "Temperature: Celsius",
+          "output_rate": "1 kbps"
+        },
+        "sensor3": {
+          "name": "CO2 sensor",
+          "company": "FIGARO",
+          "output": "Percent content: ppm",
+          "output_rate": "1 kbps"
+        }
+      }
+    }]
+}

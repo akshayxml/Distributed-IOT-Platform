@@ -1,0 +1,22 @@
+{
+	"Application ID": "12",
+	"Deployables":
+    [
+        {
+            "algorithmName" : "health monitor",
+            "SensorInfo":
+            [
+                {
+                    "Sensor type" : "temp",
+                    "Sensor IP":"x.x.x.x",
+                    "Port": "x"
+                },
+                {
+                    "Sensor type" : "pulse",
+                    "Sensor IP":"x.x.x.x",
+                    "Port": "x"
+                }
+            ]
+        }
+    ]
+}
