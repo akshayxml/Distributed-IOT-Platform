@@ -1,0 +1,20 @@
+{
+    "ListOfSensorInstances":
+    [
+        {
+            "Sensor-type":"temp",
+            "IP" : "x.x.x.x",
+            "Port": "x",
+            "No of fields of metadata": "2",
+            "Key1" : "value1",
+            "Key2" : "value2"
+        },
+        {
+            "Sensor-type":"humidity",
+            "IP" : "x.x.x.x",
+            "Port": "x",
+            "No of fields of metadata": "1",
+            "location" : "Hyderabad"
+        }
+    ]
+}

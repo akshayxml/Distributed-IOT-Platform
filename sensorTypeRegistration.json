@@ -1,0 +1,23 @@
+{
+	"sensorTypeList":
+    [
+        {
+            "Sensor type name":"temp sensor",
+            "Company": "samsung",
+            "Sensor_data_structure":
+            {
+                "temp":"int",
+                "x":"float"  
+            }
+        },
+        {
+            "Sensor type name":"humidity sensor",
+            "Company": "lg",
+            "Sensor_data_structure":
+            {
+                "humidity":"float",
+                "randomFiels":"int"  
+            }
+        }
+    ]
+}
