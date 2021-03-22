@@ -14,7 +14,7 @@
             "IP" : "x.x.x.x",
             "Port": "x",
             "No of fields of metadata": "1",
-            "location" : "Hyderabad"
+            "Key1" : "value1"
         }
     ]
 }
