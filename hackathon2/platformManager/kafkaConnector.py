@@ -7,7 +7,7 @@ def json_serializer(data):
 
 class kafkaConnector:
     def __init__(self):
-        self.producer = KafkaProducer(bootstrap_servers=['10.0.0.4:9093'],
+        self.producer = KafkaProducer(bootstrap_servers=['0.0.0.0:9092'],
                          value_serializer=json_serializer)
     
     def sendJsonData(self,topicName,data):
@@ -16,7 +16,7 @@ class kafkaConnector:
     def getJsonData(self,topicName):
         consumer = KafkaConsumer(
                                 topicName,
-                                bootstrap_servers='10.0.0.4:9093',
+                                bootstrap_servers='0.0.0.0:9092',
                                 auto_offset_reset='earliest')
         print('starting the consumer')
         for msg in consumer:
