@@ -18,3 +18,13 @@ ssh IAS-Node-2@52.146.1.189 sudo docker run -d --name sensor-instance -e KAFKA_A
 ssh IAS-Node-2@52.146.1.189 sudo docker build -t scheduler -f /home/IAS-Node-2/iot_platform/scheduler_docker/dockerfile /home/IAS-Node-2/iot_platform/scheduler_docker/
 
 ssh IAS-Node-2@52.146.1.189 sudo docker run -d --name scheduler -e KAFKA_ADDRESS="52.146.2.26:9092" scheduler &
+
+#deployer
+ssh IAS-Node-2@52.146.1.189 sudo docker build -t deployer -f /home/IAS-Node-2/iot_platform/deployment_docker/dockerfile /home/IAS-Node-2/iot_platform/deployment_docker/
+
+ssh IAS-Node-2@52.146.1.189 sudo docker run -d --name deployer -e KAFKA_ADDRESS="52.146.2.26:9092" deployer &
+
+#sensor binder
+ssh IAS-Node-2@52.146.1.189 sudo docker build -t sensor-binder -f /home/IAS-Node-2/iot_platform/sensor_binder_docker/dockerfile /home/IAS-Node-2/iot_platform/sensor_binder_docker/
+
+ssh IAS-Node-2@52.146.1.189 sudo docker run -d --name sensor-binder -e KAFKA_ADDRESS="52.146.2.26:9092" sensor-binder &
