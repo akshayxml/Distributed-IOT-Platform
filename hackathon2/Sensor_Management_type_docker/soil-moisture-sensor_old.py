@@ -4,6 +4,7 @@ from kafka import KafkaProducer
 import json
 import time
 import threading
+import os
 from kafka import KafkaConsumer
 
 def json_serializer(data):
@@ -19,23 +20,24 @@ def get_data():
         "humidity": fake.pydecimal()
     }
 
+kafka_address = os.environ['KAFKA_ADDRESS']
 
-producer = KafkaProducer(bootstrap_servers=['52.146.2.26:9092'],
+producer = KafkaProducer(bootstrap_servers=[kafka_address],
                          value_serializer=json_serializer)
 control_topic = sys.argv[2]
 
 #control function
 def set_data(data):
 	if(data == 1):
-		producer.send('sensor_manager_to_pm',"Sprinkler On")
+		print('Sprinkler On')
 	elif(data == 0):
-		producer.send('sensor_manager_to_pm',"Sprinkler Off")
+		print('Sprinkler Off')
 	else:
-		producer.send('sensor_manager_to_pm',"Invalid Input")
+		print('Invalid Input')
 
 def consumer_thread():
 	consumer = KafkaConsumer(control_topic,
-        bootstrap_servers='52.146.2.26:9092',
+        bootstrap_servers=[kafka_address],
         auto_offset_reset='earliest',
         group_id='consumer-group-a')
         
