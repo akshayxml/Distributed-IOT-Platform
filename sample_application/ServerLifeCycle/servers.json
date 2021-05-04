@@ -1,0 +1,1 @@
+{"server1": {"id": "1", "ip": "127.0.0.1", "port": 9010, "isActive": 0, "topic": "1"}, "server2": {"id": "2", "ip": "127.0.0.1", "port": "4563", "isActive": 0, "topic": "2", "consume_topic": "consume2"}, "server3": {"id": "3", "ip": "127.0.0.2", "port": "4567", "isActive": 0, "topic": "3", "consume_topic": "consume3"}}

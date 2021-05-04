@@ -1,0 +1,72 @@
+{
+   "application_name": "Bus_management",
+   "application_id": 2,
+   "developer_id": 869,
+   "environment":{
+      "os": "Linux",
+      "modules": [
+         "pandas",
+         "numpy"
+      ]
+   },
+   "algorithm_list":[
+      {
+         "algorithm_name":"fareCalculator",
+         "script":{
+            "name":"fareCalculator.py"
+         },
+         "input_sensors":[
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"temp-sensor"
+            },
+            {
+               "sensor_type":"biometric-sensor"
+            },
+            {
+               "sensor_type":"light-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"temp-sensor"
+            },
+            {
+               "sensor_type":"biometric-sensor"
+            },
+            {
+               "sensor_type":"light-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"temp-sensor"
+            },
+            {
+               "sensor_type":"biometric-sensor"
+            },
+            {
+               "sensor_type":"light-sensor"
+            }
+         ]
+      },
+      {
+         "algorithm_name":"airConditions",
+         "script":{
+            "name":"airConditions.py"
+         },
+         "input_sensors":[
+            {
+               "sensor_type":"air-condition-sensor"
+            },
+            {
+               "sensor_type":"air-condition-sensor"
+            }
+         ]
+      }
+   ]
+}
