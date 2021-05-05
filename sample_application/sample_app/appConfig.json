@@ -20,34 +20,50 @@
                "sensor_type":"gps-sensor"
             },
             {
-               "sensor_type":"temp-sensor"
-            },
-            {
                "sensor_type":"biometric-sensor"
-            },
-            {
-               "sensor_type":"light-sensor"
             },
             {
                "sensor_type":"gps-sensor"
             },
             {
-               "sensor_type":"temp-sensor"
-            },
-            {
                "sensor_type":"biometric-sensor"
-            },
-            {
-               "sensor_type":"light-sensor"
             },
             {
                "sensor_type":"gps-sensor"
             },
             {
+               "sensor_type":"biometric-sensor"
+            } 
+         ]
+      },
+      {
+         "algorithm_name":"temperatureControl",
+         "script":{
+            "name":"temperatureControl.py"
+         },
+         "input_sensors":[
+            {
                "sensor_type":"temp-sensor"
             },
             {
-               "sensor_type":"biometric-sensor"
+               "sensor_type":"temp-sensor"
+            },
+            {
+               "sensor_type":"temp-sensor"
+            }
+         ]
+      },
+      {
+         "algorithm_name":"lightControl",
+         "script":{
+            "name":"lightControl.py"
+         },
+         "input_sensors":[
+            {
+               "sensor_type":"light-sensor"
+            },
+            {
+               "sensor_type":"light-sensor"
             },
             {
                "sensor_type":"light-sensor"
@@ -55,18 +71,51 @@
          ]
       },
       {
-         "algorithm_name":"airConditions",
+         "algorithm_name":"buzzerSend",
          "script":{
-            "name":"airConditions.py"
+            "name":"buzzerSend.py"
          },
          "input_sensors":[
             {
-               "sensor_type":"air-condition-sensor"
+               "sensor_type":"gps-sensor"
             },
             {
-               "sensor_type":"air-condition-sensor"
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            }
+         ]
+      },
+      {
+         "algorithm_name":"baricadeDetector",
+         "script":{
+            "name":"baricadeDetector.py"
+         },
+         "input_sensors":[
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
             }
          ]
       }
+
    ]
 }
