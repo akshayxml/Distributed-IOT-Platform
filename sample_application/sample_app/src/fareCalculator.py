@@ -60,5 +60,7 @@ def calculate_fare(): #
         
         producer.send('display_fareDetails_1', str(id)+':'+str(fare)) #sending passenger id:fare
 
+# bus wise dashboard
+# kafka - fare, temp (switch on ac),light (remove light),barricade (reached)
 
 calculate_fare()
