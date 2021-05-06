@@ -7,8 +7,10 @@ import os
 import threading
 from datetime import datetime
 
+kafka_address = os.environ['KAFKA_ADDRESS']
+
 admin_client = KafkaAdminClient(
-    bootstrap_servers="52.146.2.26:9092",
+    bootstrap_servers=kafka_address,
     client_id='test'
 )
 
@@ -25,7 +27,7 @@ if __name__=='__main__':
     topic_name = "pm_to_sensor_ins_reg"
     consumer = KafkaConsumer(
         topic_name,
-        bootstrap_servers='52.146.2.26:9092',
+        bootstrap_servers=kafka_address,
         auto_offset_reset='earliest',
         group_id='consumer-group-c')
 

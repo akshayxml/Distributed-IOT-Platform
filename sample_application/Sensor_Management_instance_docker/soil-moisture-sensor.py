@@ -5,6 +5,7 @@ import json
 import time
 import threading
 from kafka import KafkaConsumer
+import os
 
 def json_serializer(data):
     return data.encode()

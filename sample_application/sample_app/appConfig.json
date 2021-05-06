@@ -24,15 +24,6 @@
             },
             {
                "sensor_type":"gps-sensor"
-            },
-            {
-               "sensor_type":"biometric-sensor"
-            },
-            {
-               "sensor_type":"gps-sensor"
-            },
-            {
-               "sensor_type":"biometric-sensor"
             } 
          ]
       },
@@ -44,12 +35,6 @@
          "input_sensors":[
             {
                "sensor_type":"temp-sensor"
-            },
-            {
-               "sensor_type":"temp-sensor"
-            },
-            {
-               "sensor_type":"temp-sensor"
             }
          ]
       },
@@ -59,12 +44,6 @@
             "name":"lightControl.py"
          },
          "input_sensors":[
-            {
-               "sensor_type":"light-sensor"
-            },
-            {
-               "sensor_type":"light-sensor"
-            },
             {
                "sensor_type":"light-sensor"
             }
@@ -93,12 +72,6 @@
             "name":"baricadeDetector.py"
          },
          "input_sensors":[
-            {
-               "sensor_type":"gps-sensor"
-            },
-            {
-               "sensor_type":"gps-sensor"
-            },
             {
                "sensor_type":"gps-sensor"
             },

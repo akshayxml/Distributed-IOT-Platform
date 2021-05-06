@@ -1,12 +1,20 @@
 {
    "application_id":12,
    "instance_id":1,
-   "script_name" : "waterContent.py",
-   "script_file_path": ["/home/varun/Downloads/hackathon2/app/src/waterContent.py", "/home/varun/Downloads/hackathon2/app/src/platform_libfile.py"],
-   "algorithm_name":"waterContent",
+   "script_name" : "fareCalculator.py",
+   "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+   "algorithm_name":"fareCalculator",
    "sensor_info":[
       {
-         "sensor_type":"soil-moisture-sensor",
+         "sensor_type":"gps-sensor",
+         "filter_sensors":[
+            {
+               "location":"chennai"
+            }
+         ]
+      },
+      {
+         "sensor_type":"gps-sensor",
          "filter_sensors":[
             {
                "location":"chennai"
