@@ -18,9 +18,15 @@ def get_partition(key, all, available):
 
 #fake = Faker()
 def create_lux():
-    return int(random.uniform(20,500))
+    global set_lux
+    if set_lux == 0:
+        return int(random.uniform(20, 500))
+    else:
+        return set_lux
+
 
 def get_data():
+
     return {
         "light": create_lux()
     }
@@ -30,15 +36,29 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=json_serializer)
 control_topic = sys.argv[2]
 
+set_lux=0
+
+def pause_data():
+    global set_lux
+    time.sleep(40)
+    set_lux= 0
+
 
 # control function
 def set_data(data):
-    if (data < 50):
-        print('Lights ON')
-    # elif (data > 50):
-    #     print('Lights Off')
-    # else:
-    #     print('Invalid Input')
+    global set_lux
+
+    if (int(data) ==1):
+        set_lux = 70
+        threading.Thread(target=pause_data, args=()).start()
+        print('Lights On')
+    elif (int(data) == 0):
+        set_lux = 28
+        threading.Thread(target=pause_data, args=()).start()
+        print('Lights Off')
+    else:
+        print('Invalid Input')
+
 
 
 def consumer_thread():
@@ -59,7 +79,7 @@ if __name__ == '__main__':
     while 1 == 1:
         registered_user = get_data()
         # print(registered_user["humidity"])
-        print("light")
-        print(str(registered_user["light"]))
+        #print("light")
+        #print(str(registered_user["light"]))
         producer.send(topic_name, str(registered_user["light"]))
         time.sleep(5)

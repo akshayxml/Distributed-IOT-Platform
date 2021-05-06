@@ -61,4 +61,4 @@ if __name__ == '__main__':
         print("biometric")
         print(str(registered_user["biometric"]))
         producer.send(topic_name, str(registered_user["biometric"]))
-        time.sleep(5)
+        time.sleep(15)

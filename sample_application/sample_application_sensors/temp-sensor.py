@@ -38,17 +38,18 @@ control_topic = sys.argv[2]
 def pause_data():
     global set_temp
     time.sleep(40)
-    set_temp=0
+    set_temp= 0
 
 
 # control function
 def set_data(data):
     global set_temp
-    if (data ==1):
+
+    if (int(data) ==1):
         set_temp = 18
         threading.Thread(target=pause_data, args=()).start()
         print('AC On')
-    elif (data == 0):
+    elif (int(data) == 0):
         set_temp = 28
         threading.Thread(target=pause_data, args=()).start()
         print('AC Off')
@@ -74,7 +75,7 @@ if __name__ == '__main__':
     while 1 == 1:
         registered_user = get_data()
         # print(registered_user["humidity"])
-        print("Temp")
-        print(str(registered_user["temp"]))
+        #print("Temp")
+        #print(str(registered_user["temp"]))
         producer.send(topic_name, str(registered_user["temp"]))
-        time.sleep(5)
+        time.sleep(3)

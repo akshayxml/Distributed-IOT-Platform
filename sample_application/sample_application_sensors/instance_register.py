@@ -22,7 +22,7 @@ def connect_sensor(name,topic_w,topic_control,placeholder):
 
 
 if __name__=='__main__':
-    topic_name = "pm_to_sensor_ins_reg"
+    topic_name = "pm_to_sensor_ins_reg1"
     consumer = KafkaConsumer(
         topic_name,
         bootstrap_servers='localhost:9092',
@@ -38,7 +38,8 @@ if __name__=='__main__':
             stop_treads=False
             t = time.time()
             topic_w = "topic_in"+str(t)
-            topic_control = "topic_control"+str(t)
+            #topic_control = "topic_control"+str(t)
+            topic_control = "topic_control_" + x["sensor_type"]+"_"+str(t)
             name= x["sensor_type"]+".py"
             placeholder="0"
             if x["sensor_type"]== "gps-sensor":

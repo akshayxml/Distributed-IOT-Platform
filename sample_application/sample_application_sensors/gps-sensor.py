@@ -15,7 +15,7 @@ def json_serializer(data):
 def get_partition(key, all, available):
     return 0
 
-bus_cordinates = {"1":50, "2":0, "3":-70}
+bus_cordinates = {"1":50, "2":0, "3":-70, "4":0}
 
 
 
@@ -35,6 +35,11 @@ def create_x_y(type,id):
         bus_cordinates[id]=bus_cordinates[id]+2.6
         if bus_cordinates[id] >= 0 :
             bus_cordinates[id] = -70
+
+    if id =="4":
+        bus_cordinates[id]=bus_cordinates[id]+2.6
+        if bus_cordinates[id] >= -70 :
+            bus_cordinates[id] = 0
 
     return str(bus_cordinates[id])+ ":" +"0"
     #return str(random.uniform(0,50)) + ":" + str(random.uniform(0,50))
