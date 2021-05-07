@@ -17,39 +17,41 @@ producer = KafkaProducer(bootstrap_servers=[kafka_address],
                          value_serializer=json_serializer)
 
 
+def getCoordinates(gps):
+    _,bus_id,x,y = gps.split(":")
+    return tuple([float(x),float(y)]),bus_id
+
+def filled(bus_id):
+    return True
+    #should access data base to get count of people
 
 def temperatureControl():
-    filled = False
     #bus_temp_topicName = platform_libfile.getSensorData(sys.argv[1],0)
     bus_temp_topicName = 'bus_temp'
 
-    #bus_biometric_topicName = platform_libfile.getSensorData(sys.argv[2],0)
-    bus_biometric_topicName = 'bus_bio'
+    #bus_gps_topicName = platform_libfile.getSensorData(sys.argv[2],0)
+    bus_gps_topicName = 'bus_gps'
 
     #temp_Control_topic_name = platform_libfile.setSensorData(sys.argv[1],0)
     temp_Control_topic_name = 'temp_cont_bus1'
 
-    consumer_bus_bio = KafkaConsumer(bus_biometric_topicName,bootstrap_servers=kafka_address,auto_offset_reset = "latest")
+    consumer_bus_gps = KafkaConsumer(bus_gps_topicName,bootstrap_servers=kafka_address,auto_offset_reset = "latest")
     consumer_bus_temp = KafkaConsumer(bus_temp_topicName,bootstrap_servers=kafka_address,auto_offset_reset = "latest")
 
+    for msg in consumer_bus_gps:
+        _,bus_id = getCoordinates(msg.value.decode())
+        break
+
     for msg_temp in consumer_bus_temp:
-        if(filled):
+        if(filled(bus_id)):
             temp = float(msg_temp.value.decode('utf-8'))
             print(temp)
             if(temp > 20 ):
                 print("switching on AC ")
                 producer.send(temp_Control_topic_name, '1')
-        else: 
-            print("waiting for passenger ")
-            for msg_bio in consumer_bus_bio:
-                print("passenger embarked ")
-                filled = True
-                break
-            
-
-
-
-
+                dahsboardMsg = json.dumps({"Temperature": 'Switch on AC as temp is {}'.format(temp)})
+                #print("topic name : ",'bus_'+bus_id)
+                producer.send('bus_'+bus_id,dahsboardMsg) 
 
 
 temperatureControl()
