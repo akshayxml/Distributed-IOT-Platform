@@ -18,7 +18,8 @@ collection = db["deploy_configs"]
 def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=json_serializer)
+kafka_address = os.environ['KAFKA_ADDRESS']
+producer = KafkaProducer(bootstrap_servers=[kafka_address],value_serializer=json_serializer)
 
 def get_attr(data):
     start_time, end_time, interval, days, repeat, job_id = 'NOW', '', '', [], 'NO', 0

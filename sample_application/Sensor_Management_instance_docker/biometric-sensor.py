@@ -44,7 +44,7 @@ def set_data(data):
 
 def consumer_thread():
     consumer = KafkaConsumer(control_topic,
-                             bootstrap_servers='localhost:9092',
+                             bootstrap_servers=kafka_address,
                              auto_offset_reset='earliest',
                              group_id='consumer-group-a')
 
