@@ -6,6 +6,7 @@ import json
 import time
 import threading
 from kafka import KafkaConsumer
+import os
 
 kafka_address = os.environ['KAFKA_ADDRESS']
 
