@@ -4,6 +4,7 @@
          "sensor_type_name":"gps-sensor",
          "company":"samsung",
          "sensor_data_structure":{
+		    "placeholder":"string",
             "x":"float",
             "y":"float"
          },
@@ -19,7 +20,7 @@
             "temperature":"int"
          },
          "control_functions":{
-            "number_of_functions":0,
+            "number_of_functions":1,
             "function_details":[
                {
                   "name":"switchOnAC",
@@ -58,6 +59,7 @@
          "sensor_type_name":"biometric-sensor",
          "company":"lg",
          "sensor_data_structure":{
+			   "placeholder":"string",
             "passengerID":"int"
          },
          "control_functions":{

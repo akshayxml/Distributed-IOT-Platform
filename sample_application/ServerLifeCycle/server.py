@@ -5,9 +5,9 @@ import time
 import os
 import json
 
-
+kafka_address = os.environ['KAFKA_ADDRESS']
 def kafka_producer(id,ip,port,isActive,topic):
-    producer = KafkaProducer(bootstrap_servers = '52.146.2.26:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+    producer = KafkaProducer(bootstrap_servers = kafka_address,value_serializer=lambda v: json.dumps(v).encode('utf-8'))
     while(1):
         #print('server')
         #print('generating:',id)
@@ -33,7 +33,7 @@ def deployApp(deploy_request):
 def consumer(consumer_topic):
     consumer = KafkaConsumer(
        consumer_topic,
-       bootstrap_servers='52.146.2.6:9092',
+       bootstrap_servers=kafka_address,
        auto_offset_reset='earliest',
        group_id='consumer-group-a')
     for msg in consumer:

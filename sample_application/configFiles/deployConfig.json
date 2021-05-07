@@ -9,7 +9,16 @@
          "sensor_type":"gps-sensor",
          "filter_sensors":[
             {
-               "location":"chennai"
+               "placeholder":"bus",
+               "bus-id":"1"
+            }
+         ]
+      },
+      {
+         "sensor_type":"biometric-sensor",
+         "filter_sensors":[
+            {
+               "bus-id":"1"
             }
          ]
       },
@@ -17,7 +26,8 @@
          "sensor_type":"gps-sensor",
          "filter_sensors":[
             {
-               "location":"chennai"
+               "placeholder":"admin",
+               "admin-id":"1"
             }
          ]
       }
@@ -26,7 +36,7 @@
       "request_type": "start",
       "start_time": "",
       "end_time": "",
-      "day": "",
+      "days": "",
       "interval": "30",
       "repeat": "no",
       "job_id": "123 exists only if request type is stop"

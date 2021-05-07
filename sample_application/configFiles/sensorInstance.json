@@ -4,24 +4,23 @@
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8766",
-         "no_of_fields":1,
-		 "placeholder":"admin",
+         "no_of_fields":2,
+		   "placeholder":"admin",
          "admin-id":"1"
       },
-	  
 	  {
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8767",
-         "no_of_fields":1,
-		 "placeholder":"barricade",
+         "no_of_fields":2,
+		   "placeholder":"barricade",
          "barricade-id":"1"
       },
 	  {
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8768",
-         "no_of_fields":1,
+         "no_of_fields":2,
 		 "placeholder":"barricade",
          "barricade-id":"2"
       },
@@ -29,7 +28,7 @@
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8769",
-         "no_of_fields":1,
+         "no_of_fields":2,
 		 "placeholder":"barricade",
          "barricade-id":"3"
       },
@@ -37,16 +36,16 @@
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8770",
-         "no_of_fields":1,
-		 "placeholder":"admin",
-         "admin-id":"1"
+         "no_of_fields":2,
+		 "placeholder":"barricade",
+         "barricade-id":"4"
       },
    
       {
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8771",
-         "no_of_fields":1,
+         "no_of_fields":2,
 		 "placeholder":"bus",
          "bus-id":"1"
       },
@@ -75,7 +74,7 @@
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8771",
-         "no_of_fields":1,
+         "no_of_fields":2,
 		 "placeholder":"bus",
          "bus-id":"2"
       },
@@ -104,7 +103,7 @@
          "sensor_type":"gps-sensor",
          "ip":"127.23.65.90",
          "port":"8771",
-         "no_of_fields":1,
+         "no_of_fields":2,
 		 "placeholder":"bus",
          "bus-id":"3"
       },
@@ -128,6 +127,35 @@
          "port":"8774",
          "no_of_fields":1,
          "bus-id":"3"
+      },
+      {
+         "sensor_type":"gps-sensor",
+         "ip":"127.23.65.90",
+         "port":"8771",
+         "no_of_fields":2,
+		   "placeholder":"bus",
+         "bus-id":"4"
+      },
+      {
+         "sensor_type":"temp-sensor",
+         "ip":"127.23.65.90",
+         "port":"8772",
+         "no_of_fields":1,
+         "bus-id":"4"
+      },
+      {
+         "sensor_type":"biometric-sensor",
+         "ip":"127.23.65.90",
+         "port":"8773",
+         "no_of_fields":1,
+         "bus-id":"4"
+      },
+      {
+         "sensor_type":"light-sensor",
+         "ip":"127.23.65.90",
+         "port":"8774",
+         "no_of_fields":1,
+         "bus-id":"4"
       }
    ]
 }

@@ -7,8 +7,13 @@ from kafka.errors import KafkaError
 from kafka import KafkaConsumer
 import os
 import math
+from pymongo import MongoClient
 
 kafka_address = os.environ['KAFKA_ADDRESS']
+
+cluster = MongoClient("mongodb+srv://shweta_10:shweta10@cluster0.bh25q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = cluster["session_storage"]
+collection = db["bus_PassengerDetails"]
 
 def json_serializer(data):
     return data.encode()
@@ -25,7 +30,7 @@ def getDistance(a,b):
 def baricadeDetector():
 
     #bus_gps_topicName = platform_libfile.getSensorData(sys.argv[1],0)
-    bus_gps_topicName = 'bus_gps'
+    bus_gps_topicName = 'bus_gps_1'
 
     #barricade_gps1_topicName = platform_libfile.getSensorData(sys.argv[2],0)
     barricade_gps1_topicName = 'barricade_gps_1'
@@ -80,6 +85,7 @@ def baricadeDetector():
         print("bus gps ",bus_coord)
         for c in barr_coord:
             if(getDistance(c,bus_coord) < threshold):
+                collection.update_one({'bus_id':bus_id},{"$set": {'bus_id':bus_id,'is_filled': False}}, upsert=True)
                 print("bus has reached barricade ",c)
                 dahsboardMsg = json.dumps({"Barricade": 'bus has reached barricade {}'.format(c)})
                 producer.send('bus_'+bus_id,dahsboardMsg) 

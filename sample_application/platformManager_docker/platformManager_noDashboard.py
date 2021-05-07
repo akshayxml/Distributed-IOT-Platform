@@ -6,14 +6,22 @@ import pymongo
 import json
 import bson
 import base64
+from flask import Response
 from bson.binary import Binary
 from pymongo import MongoClient
 import validator
+from kafka import KafkaConsumer
 from kafkaConnector import kafkaConnector
 
 app = Flask(__name__)
 kafka = kafkaConnector()
+kafka_address = os.environ['KAFKA_ADDRESS']
 
+consumer_for_sensor_manager = KafkaConsumer("sensor_manager_to_pm",
+        bootstrap_servers=kafka_address,
+        auto_offset_reset='earliest',
+        group_id='consumer-group-a')
+        
 def gettopic(instance_id,index):
     #instance_id
     #index=0
@@ -92,6 +100,14 @@ def setSensorTopic():
     index=content["index"]
     return {"data": getControltopic(instance_id,index)}
 
+@app.route('/dashboard', methods=["GET"])
+def dashboard():
+    vals = []
+    for msg in consumer_for_sensor_manager:
+        vals.append(msg.value.decode())
+        break
+    return render_template('dashboard.html', values=vals)
+    
 @app.route('/', methods=['POST'])
 def uploade_file():
     uploaded_file = request.files['file']

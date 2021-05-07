@@ -20,31 +20,17 @@
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <div class="form">
          <h1>IOT Platform Group 4</h1>
-         <h3> Logs </h3>
       </div>
-      
-      <div id="value_lable" style="text-align:center">
-		{% for val in values %}
-			{{ val }}<br>
-		{% endfor %}
-	  </div>
-	  
-	<script>
-		var ajax_call = function() {
-		  $.ajax({
-			  url: '/dashboard',
-			  success: function(response) {
-				var result = $('<div/>').append(response).find('#value_lable').html();
-				console.log(result);
-				$("#value_lable").append(result);
-			  },
-			});
-		};
-		
-		var interval = 1000; 
-
-		setInterval(ajax_call, interval);
-			
-	</script>
+      <div style="text-align:center">
+		  <button onclick="location.href='dashboard/bus_1'">Bus 1</button>
+		  <button onclick="location.href='dashboard/bus_2'">Bus 2</button>
+		  <button onclick="location.href='dashboard/bus_3'">Bus 3</button>
+        <button onclick="location.href='dashboard/bus_4'">Bus 4</button>
+      </div>
+      <br>
+      <br>
+      <div style="text-align:center">
+      	<button onclick="location.href='dashboard/Admin'">Admin</button>
+      </div>
    </body>
 </html>

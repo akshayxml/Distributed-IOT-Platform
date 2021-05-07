@@ -14,13 +14,13 @@ server_status = set()
 
 server_status.add("1")
 
-
+kafka_address = os.environ['KAFKA_ADDRESS']
 
 
 def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
-producer = KafkaProducer(bootstrap_servers=['52.146.2.6:9092'],
+producer = KafkaProducer(bootstrap_servers=[kafka_address],
                         value_serializer=json_serializer)
 
 def readServerInfo():
@@ -40,7 +40,7 @@ def consumer_handler(server_topic):
     #print('consuming from: ', server_topic)
     consumer = KafkaConsumer(
         server_topic,
-        bootstrap_servers=['52.146.2.26:9092'],
+        bootstrap_servers=[kafka_address],
         auto_offset_reset='earliest',
         enable_auto_commit=True,
         group_id='my-group',
@@ -174,7 +174,7 @@ def deployer_request():
 
     deployer_to_slc_consumer = KafkaConsumer(
        "deployer_to_slc",
-       bootstrap_servers='52.146.2.26:9092',
+       bootstrap_servers=kafka_address,
        auto_offset_reset='earliest',
        group_id='consumer-group-a')
     

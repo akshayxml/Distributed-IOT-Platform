@@ -17,11 +17,11 @@ app = Flask(__name__)
 kafka = kafkaConnector()
 kafka_address = os.environ['KAFKA_ADDRESS']
 
-consumer_for_sensor_manager = KafkaConsumer("sensor_manager_to_pm",
-        bootstrap_servers=kafka_address,
-        auto_offset_reset='earliest',
-        group_id='consumer-group-a')
-        
+bus_1_dashboard_consumer = KafkaConsumer("bus_1", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_1')
+bus_2_dashboard_consumer = KafkaConsumer("bus_2", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_2')
+bus_3_dashboard_consumer = KafkaConsumer("bus_3", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_3')
+bus_4_dashboard_consumer = KafkaConsumer("bus_4", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_4')
+
 def gettopic(instance_id,index):
     #instance_id
     #index=0
@@ -84,6 +84,34 @@ def getControltopic(instance_id,index):
 def index():
    return render_template('index.html')
 
+@app.route('/dashboard', methods=["GET"])
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/dashboard/bus_<string:bus_id>', methods=["GET"])
+def bus_dashboard(bus_id):    
+	return render_template('bus_dashboard.html', bus_id = bus_id, col1 = ['Fare Details'], col2 = ['Other Details'])
+
+@app.route('/dashboard/bus_refresh_<string:bus_id>', methods=["GET"])
+def bus_dashboard_refresher(bus_id):    
+
+	req_dashboard = bus_1_dashboard_consumer
+	
+	if(bus_id == '2'):
+		req_dashboard = bus_2_dashboard_consumer
+	elif(bus_id == '3'):
+		req_dashboard = bus_3_dashboard_consumer
+	elif(bus_id == '4'):
+		req_dashboard = bus_4_dashboard_consumer
+	
+	for msg in req_dashboard:
+		vals = json.loads(str(msg.value.decode()))
+		col1 = []
+		if('fare' in vals and vals['fare'] != ''):
+			col1 = [vals['fare']]
+		col2 = [v for (k,v) in vals.items() if v != '' if k != 'fare']
+		return render_template('bus_dashboard.html', col1=col1, col2=col2)
+	 
 @app.route('/getSensorTopic', methods=["POST"])
 def getSensorTopic():
     #content  = request.get_json(force=True)
@@ -99,14 +127,6 @@ def setSensorTopic():
     instance_id=content["id"]
     index=content["index"]
     return {"data": getControltopic(instance_id,index)}
-
-@app.route('/dashboard', methods=["GET"])
-def dashboard():
-    vals = []
-    for msg in consumer_for_sensor_manager:
-        vals.append(msg.value.decode())
-        break
-    return render_template('dashboard.html', values=vals)
     
 @app.route('/', methods=['POST'])
 def uploade_file():
