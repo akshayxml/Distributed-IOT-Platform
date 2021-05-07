@@ -50,37 +50,38 @@ def baricadeDetector():
     for msg_barricade_1 in consumer_barricade1_gps:
         barr1_coor = msg_barricade_1.value.decode('utf-8')
         break
-    barr1_coor = getCoordinates(barr1_coor)
+    barr1_coor,_ = getCoordinates(barr1_coor)
     barr_coord.append(barr1_coor)
 
     barr2_coor = None
     for msg_barricade_1 in consumer_barricade2_gps:
         barr2_coor = msg_barricade_1.value.decode('utf-8')
         break
-    barr2_coor = getCoordinates(barr2_coor)
+    barr2_coor,_ = getCoordinates(barr2_coor)
     barr_coord.append(barr2_coor)
 
     barr3_coor = None
     for msg_barricade_1 in consumer_barricade3_gps:
         barr3_coor = msg_barricade_1.value.decode('utf-8')
         break
-    barr3_coor = getCoordinates(barr3_coor)
+    barr3_coor,_ = getCoordinates(barr3_coor)
     barr_coord.append(barr3_coor)
 
     barr4_coor = None
     for msg_barricade_1 in consumer_barricade4_gps:
         barr4_coor = msg_barricade_1.value.decode('utf-8')
         break
-    barr4_coor = getCoordinates(barr4_coor)
+    barr4_coor,_ = getCoordinates(barr4_coor)
     barr_coord.append(barr4_coor)
 
     threshold = 3
     for msg in consumer_bus_gps:
-        bus_coord = getCoordinates(msg.value.decode('utf-8'))
+        bus_coord,bus_id = getCoordinates(msg.value.decode('utf-8'))
         print("bus gps ",bus_coord)
         for c in barr_coord:
             if(getDistance(c,bus_coord) < threshold):
                 print("bus has reached barricade ",c)
-                #send to 
+                dahsboardMsg = json.dumps({"Barricade": 'bus has reached barricade {}'.format(c)})
+                producer.send('bus_'+bus_id,dahsboardMsg) 
         
 baricadeDetector()
