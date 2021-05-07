@@ -20,8 +20,11 @@ def getCoordinates(gps):
     _,bus_id,x,y = gps.split(":")
     return tuple([float(x),float(y)]),bus_id
 
+def filled(bus_id):
+    return True
+    #should access data base to get count of people
+
 def lightControl():
-    filled = False
     #bus_light_topicName = platform_libfile.getSensorData(sys.argv[1],0)
     bus_light_topicName = 'bus_light'
 
@@ -39,7 +42,7 @@ def lightControl():
         break
 
     for msg_light in consumer_bus_light:
-        if(filled):
+        if(filled(bus_id)):
             light = float(msg_light.value.decode('utf-8'))
             print(light)
             if(light < 40 ):
@@ -48,12 +51,5 @@ def lightControl():
                 dahsboardMsg = json.dumps({"Light": 'Switch on light as lux is {}'.format(light)})
                 #print("topic name : ",'bus_'+bus_id)
                 producer.send('bus_'+bus_id,dahsboardMsg) 
-        else: 
-            print("waiting for passenger ")
-            for msg_bio in consumer_bus_bio:
-                print("passenger embarked ")
-                filled = True
-                break
-            
 
 lightControl()

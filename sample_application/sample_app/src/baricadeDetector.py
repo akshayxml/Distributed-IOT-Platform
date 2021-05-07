@@ -16,8 +16,8 @@ producer = KafkaProducer(bootstrap_servers=[kafka_address],
                          value_serializer=json_serializer)
 
 def getCoordinates(gps):
-    _,_,x,y = gps.split(":")
-    return tuple([float(x),float(y)])
+    _,bus_id,x,y = gps.split(":")
+    return tuple([float(x),float(y)]),bus_id
 
 def getDistance(a,b):
     return math.sqrt((a[0]-b[0])**2 + (a[1] - b[1])**2)
