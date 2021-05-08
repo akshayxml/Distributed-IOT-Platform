@@ -6,6 +6,9 @@ import json
 import time
 import threading
 from kafka import KafkaConsumer
+import os
+
+kafka_address = os.environ['KAFKA_ADDRESS']
 
 
 def json_serializer(data):
@@ -67,7 +70,7 @@ def get_data(placeholder):
         }
 
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+producer = KafkaProducer(bootstrap_servers=[kafka_address],
                          value_serializer=json_serializer)
 control_topic = sys.argv[2]
 
@@ -84,7 +87,7 @@ def set_data(data):
 
 def consumer_thread():
     consumer = KafkaConsumer(control_topic,
-                             bootstrap_servers='localhost:9092',
+                             bootstrap_servers=kafka_address,
                              auto_offset_reset='earliest',
                              group_id='consumer-group-a')
 
