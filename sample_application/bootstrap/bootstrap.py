@@ -74,6 +74,9 @@ ssh1 = makeSSHClient(host1,username1)
 ssh2 = makeSSHClient(host2,username2)
 ssh3 = makeSSHClient(host3,username3)
 
+# server life cycle
+# first run machine_status_checker.py in all machines
+# run serverLifeCycle.py in node 1
 
 #Platform manager
 image_name = 'platform-manager'
@@ -85,17 +88,17 @@ insertInDB(collection,image_name,image_name,host1,'active')
 
 
 #Sensor type 
-image_name = 'sensor-type'
-createDockerImage(ssh1,'sensor-type','Sensor_Management_type_docker')
-dockRunCommand_sensor_type = 'docker run -d --name sensor-type -e KAFKA_ADDRESS={} sensor-type '.format(kafka_address)
-ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockRunCommand_sensor_type)
-print(ssh_stdout.readlines())
-insertInDB(collection,image_name,image_name,host1,'active')
+# image_name = 'sensor-type'
+# createDockerImage(ssh1,'sensor-type','Sensor_Management_type_docker')
+# dockRunCommand_sensor_type = 'docker run -d --name sensor-type -e KAFKA_ADDRESS={} sensor-type '.format(kafka_address)
+# ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockRunCommand_sensor_type)
+# print(ssh_stdout.readlines())
+# insertInDB(collection,image_name,image_name,host1,'active')
 
-#Sensor instance
-image_name = 'sensor-instance'
-createDockerImage(ssh1,'sensor-instance','Sensor_Management_instance_docker')
-dockerRunCommand_sensor_instance = 'docker run -d --name sensor-instance -e KAFKA_ADDRESS={} sensor-instance'.format(kafka_address)
-ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockerRunCommand_sensor_instance)
-print(ssh_stdout.readlines())
-insertInDB(collection,image_name,image_name,host1,'active')
+# #Sensor instance
+# image_name = 'sensor-instance'
+# createDockerImage(ssh1,'sensor-instance','Sensor_Management_instance_docker')
+# dockerRunCommand_sensor_instance = 'docker run -d --name sensor-instance -e KAFKA_ADDRESS={} sensor-instance'.format(kafka_address)
+# ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockerRunCommand_sensor_instance)
+# print(ssh_stdout.readlines())
+# insertInDB(collection,image_name,image_name,host1,'active')
