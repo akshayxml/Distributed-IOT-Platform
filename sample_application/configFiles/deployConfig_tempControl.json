@@ -1,10 +1,8 @@
 {
    "noOfAlgo":4,
    "1":{
-      "application_id":12,
-      "instance_id":1,
-      "script_name" : "temperatureControl.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["temperatureControl.py"],
       "algorithm_name":"temperatureControl",
       "sensor_info":[
          {
@@ -36,14 +34,12 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "2":{
-      "application_id":12,
-      "instance_id":1,
-      "script_name" : "temperatureControl.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["temperatureControl.py"],
       "algorithm_name":"temperatureControl",
       "sensor_info":[
          {
@@ -75,14 +71,12 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "3":{
-      "application_id":12,
-      "instance_id":1,
-      "script_name" : "temperatureControl.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["temperatureControl.py"],
       "algorithm_name":"temperatureControl",
       "sensor_info":[
          {
@@ -114,14 +108,12 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "4":{
-      "application_id":12,
-      "instance_id":1,
-      "script_name" : "temperatureControl.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["temperatureControl.py"],
       "algorithm_name":"temperatureControl",
       "sensor_info":[
          {
@@ -153,7 +145,7 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    }
 }

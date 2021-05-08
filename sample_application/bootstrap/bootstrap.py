@@ -19,7 +19,7 @@ username3 = 'rootadmin'
 
 kafka_address = host1+':9092'
 
-pathToPlatform = '/datadrive_dummy/bootstrap/ias-spring-2021-group-4/sample_application/'
+pathToPlatform = '/datadrive/bootstrap/ias-spring-2021-group-4/sample_application/'
 
 
 class ServiceLCDatabase:
@@ -81,24 +81,24 @@ ssh3 = makeSSHClient(host3,username3)
 #Platform manager
 image_name = 'platform-manager'
 createDockerImage(ssh1,image_name,'platformManager_docker')
-dockRunCommand_platform = 'docker run -d --name platform-manager -p 5001:5001 -e KAFKA_ADDRESS={} platform-manager'.format(kafka_address)
+dockRunCommand_platform = 'docker run -d --name platform-manager -v /datadrive:/datadrive -p 5001:5001 -e KAFKA_ADDRESS={} platform-manager'.format(kafka_address)
 ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockRunCommand_platform)
 print(ssh_stdout.readlines())
 insertInDB(collection,image_name,image_name,host1,'active')
 
 
 #Sensor type 
-# image_name = 'sensor-type'
-# createDockerImage(ssh1,'sensor-type','Sensor_Management_type_docker')
-# dockRunCommand_sensor_type = 'docker run -d --name sensor-type -e KAFKA_ADDRESS={} sensor-type '.format(kafka_address)
-# ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockRunCommand_sensor_type)
-# print(ssh_stdout.readlines())
-# insertInDB(collection,image_name,image_name,host1,'active')
+image_name = 'sensor-type'
+createDockerImage(ssh1,'sensor-type','Sensor_Management_type_docker')
+dockRunCommand_sensor_type = 'docker run -d --name sensor-type -e KAFKA_ADDRESS={} sensor-type '.format(kafka_address)
+ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockRunCommand_sensor_type)
+print(ssh_stdout.readlines())
+insertInDB(collection,image_name,image_name,host1,'active')
 
 # #Sensor instance
-# image_name = 'sensor-instance'
-# createDockerImage(ssh1,'sensor-instance','Sensor_Management_instance_docker')
-# dockerRunCommand_sensor_instance = 'docker run -d --name sensor-instance -e KAFKA_ADDRESS={} sensor-instance'.format(kafka_address)
-# ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockerRunCommand_sensor_instance)
-# print(ssh_stdout.readlines())
-# insertInDB(collection,image_name,image_name,host1,'active')
+image_name = 'sensor-instance'
+createDockerImage(ssh1,'sensor-instance','Sensor_Management_instance_docker')
+dockerRunCommand_sensor_instance = 'docker run -d --name sensor-instance -e KAFKA_ADDRESS={} sensor-instance'.format(kafka_address)
+ssh_stdin, ssh_stdout, ssh_stderr = ssh1.exec_command(dockerRunCommand_sensor_instance)
+print(ssh_stdout.readlines())
+insertInDB(collection,image_name,image_name,host1,'active')

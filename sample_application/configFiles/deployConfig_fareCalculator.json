@@ -1,10 +1,8 @@
 {
    "noOfAlgo":4,
    "1":{
-      "application_id":12,
-      "instance_id":1,
-      "script_name" : "fareCalculator.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["fareCalculator.py"],
       "algorithm_name":"fareCalculator",
       "sensor_info":[
          {
@@ -38,21 +36,19 @@
          "request_type": "start",
          "start_time": "",
          "end_time": "",
-         "days": "",
+         "days": "[]",
          "interval": "30",
          "repeat": "no",
          "job_id": "123 exists only if request type is stop"
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "2":{
-      "application_id":12,
-      "instance_id":2,
-      "script_name" : "fareCalculator.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["fareCalculator.py"],
       "algorithm_name":"fareCalculator",
       "sensor_info":[
          {
@@ -93,14 +89,12 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "3":{
-      "application_id":12,
-      "instance_id":3,
-      "script_name" : "fareCalculator.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["fareCalculator.py"],
       "algorithm_name":"fareCalculator",
       "sensor_info":[
          {
@@ -141,14 +135,12 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    },
    "4":{
-      "application_id":12,
-      "instance_id":4,
-      "script_name" : "fareCalculator.py",
-      "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
+      "application_name":"Bus_management",
+      "script_name" : ["fareCalculator.py"],
       "algorithm_name":"fareCalculator",
       "sensor_info":[
          {
@@ -189,7 +181,7 @@
       },
       "environment":{
          "lang":"python",
-         "dependencies": [["requests", ""], ["kafka-python", ""]]
+         "dependencies": [["requests", ""], ["kafka-python", ""], ["pymongo", ""], ["dnspython", ""]]
       }
    }
 
