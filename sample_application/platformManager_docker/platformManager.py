@@ -10,6 +10,7 @@ from flask import Response
 from bson.binary import Binary
 from pymongo import MongoClient
 import validator
+from kafka import KafkaProducer
 from kafka import KafkaConsumer
 from kafkaConnector import kafkaConnector
 import zipfile
@@ -23,6 +24,14 @@ bus_2_dashboard_consumer = KafkaConsumer("bus_2", bootstrap_servers=kafka_addres
 bus_3_dashboard_consumer = KafkaConsumer("bus_3", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_3')
 bus_4_dashboard_consumer = KafkaConsumer("bus_4", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-bus_4')
 
+app_monitoring_to_dashboard_consumer = KafkaConsumer("app_monitoring_to_dashboard", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-app-monitor')
+log_to_dashboard_consumer = KafkaConsumer("log_to_dashboard", bootstrap_servers=kafka_address, auto_offset_reset='earliest', group_id='consumer-group-log2dash')
+
+def json_serializer(data):
+    return data.encode()
+
+producer = KafkaProducer(bootstrap_servers=[kafka_address], value_serializer=json_serializer)
+                         
 def gettopic(instance_id,index):
     #instance_id
     #index=0
@@ -89,10 +98,43 @@ def index():
 def dashboard():
     return render_template('dashboard.html')
 
-@app.route('/dashboard/bus_<string:bus_id>', methods=["GET"])
+@app.route('/dashboard/applications', methods=["GET"])
+def applications_dashboard():
+    return render_template('applications_dashboard.html')
+    
+@app.route('/dashboard/container_status', methods=["GET"])
+def container_status_dashboard():
+    return render_template('container_status.html')
+
+@app.route('/dashboard/refresh_container_status', methods=["GET"])
+def refresh_container_status_dashboard():
+	for msg in app_monitoring_to_dashboard_consumer:
+		vals = json.loads(str(msg.value.decode()))
+		col = [str(str(k) + ' - ' + str(v)) for (k,v) in vals.items()]
+		return render_template('container_status.html', col1=col)
+		
+@app.route('/dashboard/container_logs', methods=["GET", "POST"])
+def container_logs_dashboard():
+	print(request.method)
+	if request.method == 'POST':
+		c_id = request.form['c_id']
+		print(c_id)
+		producer.send('dashboard_to_log',c_id)
+		
+		for msg in log_to_dashboard_consumer:
+			vals = json.loads(str(msg.value.decode()))
+			print(vals.keys())
+			if(c_id not in vals):
+				return render_template('container_logs.html', c_id = c_id, col1=["Invalid Container ID"])
+			return render_template('container_logs.html', c_id = c_id, col1=[vals[c_id]])
+	else:
+		return render_template('container_logs.html')
+		
+@app.route('/dashboard/applications/bus_<string:bus_id>', methods=["GET"])
 def bus_dashboard(bus_id):    
 	return render_template('bus_dashboard.html', bus_id = bus_id, col1 = ['Fare Details'], col2 = ['Other Details'])
 
+	   
 @app.route('/dashboard/bus_refresh_<string:bus_id>', methods=["GET"])
 def bus_dashboard_refresher(bus_id):    
 
