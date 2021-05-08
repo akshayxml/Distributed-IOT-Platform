@@ -3,33 +3,24 @@
    "1":{
       "application_id":12,
       "instance_id":1,
-      "script_name" : "fareCalculator.py",
+      "script_name" : "temperatureControl.py",
       "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
-      "algorithm_name":"fareCalculator",
+      "algorithm_name":"temperatureControl",
       "sensor_info":[
+         {
+            "sensor_type":"temp-sensor",
+            "filter_sensors":[
+               {
+                  "bus-id":"1"
+               }
+            ]
+         },
          {
             "sensor_type":"gps-sensor",
             "filter_sensors":[
                {
                   "placeholder":"bus",
                   "bus-id":"1"
-               }
-            ]
-         },
-         {
-            "sensor_type":"biometric-sensor",
-            "filter_sensors":[
-               {
-                  "bus-id":"1"
-               }
-            ]
-         },
-         {
-            "sensor_type":"gps-sensor",
-            "filter_sensors":[
-               {
-                  "placeholder":"admin",
-                  "admin-id":"1"
                }
             ]
          }
@@ -50,34 +41,25 @@
    },
    "2":{
       "application_id":12,
-      "instance_id":2,
-      "script_name" : "fareCalculator.py",
+      "instance_id":1,
+      "script_name" : "temperatureControl.py",
       "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
-      "algorithm_name":"fareCalculator",
+      "algorithm_name":"temperatureControl",
       "sensor_info":[
+         {
+            "sensor_type":"temp-sensor",
+            "filter_sensors":[
+               {
+                  "bus-id":"2"
+               }
+            ]
+         },
          {
             "sensor_type":"gps-sensor",
             "filter_sensors":[
                {
                   "placeholder":"bus",
                   "bus-id":"2"
-               }
-            ]
-         },
-         {
-            "sensor_type":"biometric-sensor",
-            "filter_sensors":[
-               {
-                  "bus-id":"2"
-               }
-            ]
-         },
-         {
-            "sensor_type":"gps-sensor",
-            "filter_sensors":[
-               {
-                  "placeholder":"admin",
-                  "admin-id":"1"
                }
             ]
          }
@@ -98,34 +80,25 @@
    },
    "3":{
       "application_id":12,
-      "instance_id":3,
-      "script_name" : "fareCalculator.py",
+      "instance_id":1,
+      "script_name" : "temperatureControl.py",
       "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
-      "algorithm_name":"fareCalculator",
+      "algorithm_name":"temperatureControl",
       "sensor_info":[
+         {
+            "sensor_type":"temp-sensor",
+            "filter_sensors":[
+               {
+                  "bus-id":"3"
+               }
+            ]
+         },
          {
             "sensor_type":"gps-sensor",
             "filter_sensors":[
                {
                   "placeholder":"bus",
                   "bus-id":"3"
-               }
-            ]
-         },
-         {
-            "sensor_type":"biometric-sensor",
-            "filter_sensors":[
-               {
-                  "bus-id":"3"
-               }
-            ]
-         },
-         {
-            "sensor_type":"gps-sensor",
-            "filter_sensors":[
-               {
-                  "placeholder":"admin",
-                  "admin-id":"1"
                }
             ]
          }
@@ -146,34 +119,25 @@
    },
    "4":{
       "application_id":12,
-      "instance_id":4,
-      "script_name" : "fareCalculator.py",
+      "instance_id":1,
+      "script_name" : "temperatureControl.py",
       "script_file_path": ["/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/fareCalculator.py", "/home/varun/IAS/ias-spring-2021-group-4/sample_application/sample_app/src/platform_libfile.py"],
-      "algorithm_name":"fareCalculator",
+      "algorithm_name":"temperatureControl",
       "sensor_info":[
+         {
+            "sensor_type":"temp-sensor",
+            "filter_sensors":[
+               {
+                  "bus-id":"4"
+               }
+            ]
+         },
          {
             "sensor_type":"gps-sensor",
             "filter_sensors":[
                {
                   "placeholder":"bus",
                   "bus-id":"4"
-               }
-            ]
-         },
-         {
-            "sensor_type":"biometric-sensor",
-            "filter_sensors":[
-               {
-                  "bus-id":"4"
-               }
-            ]
-         },
-         {
-            "sensor_type":"gps-sensor",
-            "filter_sensors":[
-               {
-                  "placeholder":"admin",
-                  "admin-id":"1"
                }
             ]
          }
@@ -192,5 +156,4 @@
          "dependencies": [["requests", ""], ["kafka-python", ""]]
       }
    }
-
 }

@@ -139,18 +139,22 @@ def uploade_file():
 @app.route('/uploadAppZip', methods = ['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
+      appName = request.form.get("appID")
+      print("appName is : ",appName)
       f=request.files['file']
-      print(f.name)
+      print("f.name is : ", f.name)
       f = request.files['file']
       f.save("app.zip")
+      
       # validation 
       valid = validator.validate_appzip('./app.zip')
+      valid = 1
       if(valid == -1):
          return 'app.zip is not formatted properly please check'
       else:
          with open("app.zip","rb") as f:
             encoded = Binary(f.read())
-         collection.insert_one({"Application id ": 1,"folder":encoded})
+         collection.insert_one({"Application id ": appName,"folder":encoded})
          return 'file uploaded successfully'
 
 @app.route('/uploadDeployConfig', methods = ['GET', 'POST'])
@@ -165,7 +169,12 @@ def uploadDeploy_file():
       else:
          with open('./deployConfig.json') as f:
             data = json.load(f)
-            kafka.sendJsonData('pm_to_sensor_binder',data)
+            noOfAlgo = int(data['noOfAlgo'])
+            for i in range(1,noOfAlgo+1):
+               kafka.sendJsonData('pm_to_sensor_binder',data[str(i)])
+               print("###########config sent is #######")
+               print(data[str(i)])
+            #kafka.sendJsonData('pm_to_sensor_binder',data)
          return 'file uploaded successfully'
 
 @app.route('/uploadSensorType', methods = ['GET', 'POST'])

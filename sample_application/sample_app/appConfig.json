@@ -35,6 +35,9 @@
          "input_sensors":[
             {
                "sensor_type":"temp-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
             }
          ]
       },
@@ -46,6 +49,9 @@
          "input_sensors":[
             {
                "sensor_type":"light-sensor"
+            },
+            {
+               "sensor_type":"gps-sensor"
             }
          ]
       },
@@ -55,6 +61,9 @@
             "name":"buzzerSend.py"
          },
          "input_sensors":[
+            {
+               "sensor_type":"gps-sensor"
+            },
             {
                "sensor_type":"gps-sensor"
             },

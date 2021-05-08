@@ -10,14 +10,14 @@ from kafka import KafkaConsumer
 def get_water_content():
     id = sys.argv[1]
     humiditykafkaname = platform_libfile.getSensorData(id,0)
-    print("topic name : ",humiditykafkaname)
+
     consumer = KafkaConsumer(humiditykafkaname,bootstrap_servers=['localhost:9092'],auto_offset_reset = "latest")
     # producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'])
 
     for msg in consumer:
-        #msg = json.loads(msg.value)
-        humidity = float(msg.value.decode('utf-8'))
-        print("Measuring humidity..."+str(humidity))
+        msg = json.loads(msg.value)
+        humidity = msg["moisture"]
+        print("Measuring humidity..."+humidity)
         if(humidity < 5):
             print("Humidity low sprinkler started...")
             # stat = platform_libfile.setSensorData(id,1)
