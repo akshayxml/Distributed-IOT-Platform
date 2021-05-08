@@ -12,6 +12,7 @@ from pymongo import MongoClient
 import validator
 from kafka import KafkaConsumer
 from kafkaConnector import kafkaConnector
+import zipfile
 
 app = Flask(__name__)
 kafka = kafkaConnector()
@@ -144,7 +145,12 @@ def upload_file():
       f=request.files['file']
       print("f.name is : ", f.name)
       f = request.files['file']
+      # commonDrivePath = '/home/varun/datadrive/apps/'
+      commonDrivePath = '/datadrive/apps/'
+      os.mkdir(commonDrivePath+appName)
       f.save("app.zip")
+      with zipfile.ZipFile("app.zip", 'r') as zip_ref:
+         zip_ref.extractall(commonDrivePath)
       
       # validation 
       valid = validator.validate_appzip('./app.zip')

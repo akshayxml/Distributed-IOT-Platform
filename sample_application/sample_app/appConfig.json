@@ -76,7 +76,7 @@
          ]
       },
       {
-         "algorithm_name":"baricadeDetector",
+         "algorithm_name":"barricadeDetector",
          "script":{
             "name":"baricadeDetector.py"
          },
