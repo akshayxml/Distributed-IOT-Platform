@@ -15,10 +15,11 @@ cluster = MongoClient("mongodb+srv://akshay:akshay123@cluster0.bh25q.mongodb.net
 db = cluster["scheduler_logs"]
 collection = db["deploy_configs"]
 
+kafka_address=os.environ['KAFKA_ADDRESS']
 def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=json_serializer)
+producer = KafkaProducer(bootstrap_servers=[kafka_address],value_serializer=json_serializer)
 
 def get_attr(data):
     start_time, end_time, interval, days, repeat, job_id = 'NOW', '', '', [], 'NO', 0
@@ -165,7 +166,7 @@ def send_to_deployer(data, is_onetime):
 def consume_from_sensor_binder():
 
     consumer_for_sensor_binder = KafkaConsumer("sensor_binder_to_scheduler",
-        bootstrap_servers='localhost:9092',
+        bootstrap_servers=kafka_address,
         auto_offset_reset='earliest',
         group_id='consumer-group-a')
 

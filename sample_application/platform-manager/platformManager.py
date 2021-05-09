@@ -125,7 +125,7 @@ def container_logs_dashboard():
 			vals = json.loads(str(msg.value.decode()))
 			print(vals.keys())
 			if(c_id not in vals):
-				return render_template('container_logs.html', c_id = c_id, col1=["Invalid Container ID"])
+				return render_template('container_logs.html', c_id = c_id)
 			return render_template('container_logs.html', c_id = c_id, col1=[vals[c_id]])
 	else:
 		return render_template('container_logs.html')

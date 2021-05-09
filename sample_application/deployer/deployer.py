@@ -15,8 +15,8 @@ import os
 import sys
 from shutil import copyfile
 
-# kafka_address = os.environ['KAFKA_ADDRESS']
-kafka_address = "localhost:9092"
+kafka_address = os.environ['KAFKA_ADDRESS']
+#kafka_address = "localhost:9092"
  
 class Deployer:
     def __init__(self, deploy_config_file):
@@ -73,7 +73,7 @@ class Deployer:
         for file_name in scripts:
             add_scripts += "CMD [\"python\", \"-u\"," + "\"{}\",".format(file_name)+  "\"{}\"".format(instance_id) + "]\n"
 
-        docker_file = "FROM python:3\n" + "COPY requirements.txt ./\n" + "RUN pip install --upgrade pip\n" + "RUN pip install --no-cache-dir -r requirements.txt\n" + "ENV KAFKA_ADDRESS \'20.51.210.82:9092\'\n" +  add_script_str + add_scripts
+        docker_file = "FROM python:3\n" + "COPY requirements.txt ./\n" + "RUN pip install --upgrade pip\n" + "RUN pip install --no-cache-dir -r requirements.txt\n" + "ENV KAFKA_ADDRESS " + kafka_address + "\n" +  add_script_str + add_scripts
 
         with open(DOCKERFILE_PATH,"w") as f:
             f.write(docker_file)

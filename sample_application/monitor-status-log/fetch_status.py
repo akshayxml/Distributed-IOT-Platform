@@ -150,7 +150,7 @@ def send_logs():
                             value_serializer=json_serializer)
         print("[Fetch logs] sending logs now")
         #print(cont_logs)
-        producer.send('log_to_dashboard2', cont_logs)
+        producer.send('log_to_dashboard', cont_logs)
         
 
 
